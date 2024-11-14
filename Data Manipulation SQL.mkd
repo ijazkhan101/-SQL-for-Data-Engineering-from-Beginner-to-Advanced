@@ -1,0 +1,73 @@
+# SQL Queries for Product and Customer Database
+
+This document provides a detailed breakdown of SQL queries to manage and retrieve data from a product and customer database. Each query is categorized based on its purpose and function.
+
+---
+
+## Select Queries
+
+### 1. Retrieve Product Name and Price
+```sql
+SELECT name, price FROM products;
+
+This query retrieves only the name and price columns from the products table, useful for a quick overview of product offerings and their prices.
+2. Retrieve Orders with Total Amount Greater Than 30
+
+SELECT * FROM Orders WHERE total_amount > 30;
+
+This query fetches all orders where the total_amount is greater than 30, helping identify larger or higher-value orders.
+3. List Customers in Ascending Order of Name
+
+SELECT * FROM Customer ORDER BY customer_name;
+
+This query retrieves all customer records and orders them alphabetically by customer_name for easy reference.
+4. List Customers in Descending Order of Name
+
+SELECT * FROM Customer ORDER BY customer_name DESC;
+
+This query retrieves all customer records and orders them in reverse alphabetical order by customer_name.
+5. List All Products Ordered by Price
+
+SELECT * FROM products ORDER BY price;
+
+This query retrieves all products ordered by price in ascending order, useful for pricing analysis or listing products from cheapest to most expensive.
+6. List Products Priced Above 100 and Belonging to Category 1
+
+SELECT * FROM products WHERE price > 100 AND category_id = 1;
+
+This query filters products that are priced above 100 and belong to category ID 1, useful for targeting high-value items in a specific category.
+7. List Products Priced Above 100 or Belonging to Category 3
+
+SELECT * FROM products WHERE price > 100 OR category_id = 3;
+
+This query retrieves products either priced above 100 or those in category ID 3, broadening the selection to items either premium-priced or in a specific category.
+8. List Customers in New York, Ordered by Name
+
+SELECT * FROM customer WHERE city = 'New York' ORDER BY customer_name;
+
+This query selects customers located in New York and orders them by customer_name, useful for region-specific marketing or customer service.
+Data Manipulation
+1. Insert New Product Record
+
+INSERT INTO Products (name, price, description, tags, category_id, Supplier) 
+VALUES ('Laptop Mouse', 200.9, 'Great mouse with ergonomic design.', 'electronics,accessories,wireless', 1, 'TechSuppliers Inc.');
+
+This command inserts a new product into the Products table, useful for adding inventory. Here, a "Laptop Mouse" priced at 200.9 is added.
+2. Update Product Price
+
+SELECT * FROM products WHERE price = 500;
+UPDATE products SET price = 150 WHERE product_id = 5;
+
+The first command retrieves products priced at 500, and then the second command updates the price of the product with product_id 5 to 150, useful for adjusting prices.
+3. Delete Product by ID
+
+DELETE FROM products WHERE product_id = 11;
+
+This command deletes the product with product_id 11 from the Products table, useful for removing discontinued or unwanted inventory.
+4. Drop a Table
+
+DROP TABLE public."FruitJuice";
+
+This command removes the table FruitJuice entirely from the database, helpful for database cleanup or when a table is no longer required.
+
+
