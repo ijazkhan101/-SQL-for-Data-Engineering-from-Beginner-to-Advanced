@@ -44,7 +44,7 @@ Create Table: Orders
 
 The Orders table tracks customer orders. Each order has an order_id as the primary key and includes the customer_id and product_id as foreign keys to link orders to customers and products. It also stores Total_quantity, Total_amount, order_rating, length, width, order_timestamp, and delivery_timestamp.
 
-    Note: There's a correction to be made: the foreign key for customer_id should reference Customer(customer_id) instead of Customer(category_id).
+    Note: There's a correction to be made: the foreign key for customer_id should reference Customer(customer_id) instead of Customer(category_id)'
 
 CREATE TABLE Orders (
     order_id SERIAL PRIMARY KEY,
