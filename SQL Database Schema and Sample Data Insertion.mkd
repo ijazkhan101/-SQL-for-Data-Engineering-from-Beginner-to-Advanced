@@ -1,0 +1,125 @@
+# SQL Database Schema and Sample Data Insertion
+
+## 1. Table Creation
+
+### Create Table: `Categories`
+
+This table stores product categories. Each category has a unique `category_id` as the primary key and a `name` representing the category.
+
+```sql
+CREATE TABLE Categories (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+Create Table: Products
+
+The Products table contains information about products. It has a product_id as the primary key, and each product includes details such as name, price, description, tags, a foreign key category_id linking to the Categories table, and supplier.
+
+CREATE TABLE Products (
+    product_id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    price DECIMAL(10,2),
+    description VARCHAR(255),
+    tags VARCHAR(255),
+    category_id INT,
+    FOREIGN KEY (category_id) REFERENCES Categories(category_id),
+    supplier VARCHAR(100)
+);
+
+Create Table: Customer
+
+The Customer table holds customer data. Each customer has a customer_id as the primary key and other details like customer_name, email, phone_number, address, and city.
+
+CREATE TABLE Customer (
+    customer_id SERIAL PRIMARY KEY,
+    customer_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone_number VARCHAR(29),
+    address VARCHAR(255),
+    city VARCHAR(255)
+);
+
+Create Table: Orders
+
+The Orders table tracks customer orders. Each order has an order_id as the primary key and includes the customer_id and product_id as foreign keys to link orders to customers and products. It also stores Total_quantity, Total_amount, order_rating, length, width, order_timestamp, and delivery_timestamp.
+
+    Note: There's a correction to be made: the foreign key for customer_id should reference Customer(customer_id) instead of Customer(category_id).
+
+CREATE TABLE Orders (
+    order_id SERIAL PRIMARY KEY,
+    customer_id INT,
+    product_id INT,
+    Total_quantity INT,
+    Total_amount DECIMAL(10,2),
+    order_rating DECIMAL(3,1),
+    length DECIMAL(5,2),
+    width DECIMAL(5,2),
+    order_timestamp TIMESTAMP,
+    delivery_timestamp TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+
+2. Inserting Data into Tables
+Insert Data into Categories
+
+This query inserts sample categories into the Categories table.
+
+INSERT INTO Categories (name) VALUES
+    ('Electronics'),
+    ('Clothing'),
+    ('Home and Kitchen');
+
+Insert Data into Products
+
+The Products table is populated with various products, each having a name, price, description, tags, category ID (linking to Categories), and supplier.
+
+INSERT INTO Products (name, price, description, tags, category_id, supplier) VALUES
+    ('Wireless Mouse', 25.99, 'A high-precision wireless mouse with ergonomic design.', 'electronics,accessories,wireless', 1, 'TechSuppliers Inc.'),
+    ...
+    ('Wireless Charger', 24.99, 'Fast wireless charger compatible with all Qi-enabled devices.', 'electronics,accessories,phone', 1, 'PowerUp Solutions');
+
+Insert Data into Customer
+
+Sample customer data is inserted into the Customer table, including details such as customer_name, email, phone_number, address, and city.
+
+INSERT INTO Customer (customer_name, email, phone_number, address, city) VALUES
+    ('John Doe', 'john.doe@example.com', '1234567890', '123 Elm St', 'New York'),
+    ...
+    ('Rita Gonzalez', 'rita.g@example.com', '1230987456', '808 Oak Blvd', 'Washington');
+
+Insert Data into Orders
+
+The Orders table is populated with sample order records. Each order links a customer and a product using customer_id and product_id. Additional order details include Total_quantity, Total_amount, order_rating, length, width, and delivery_timestamp.
+
+INSERT INTO Orders (customer_id, product_id, Total_quantity, Total_amount, order_rating, length, width, delivery_timestamp) VALUES
+    (1, 2, 3, 59.97, 4.5, 15.25, 10.50, '2024-11-20 15:30:00'),
+    ...
+    (20, 7, 2, 29.98, 4.3, 13.50, 10.25, '2024-12-09 16:00:00');
+
+3. Selecting Data from Tables
+Retrieve All Categories
+
+This query selects all records from the Categories table to display all categories available.
+
+SELECT * FROM Categories;
+
+Retrieve All Orders
+
+This query selects all records from the Orders table to display order details, including customer and product links.
+
+SELECT * FROM Orders;
+
+Retrieve All Customers
+
+This query selects all records from the Customer table to display customer details.
+
+SELECT * FROM Customer;
+
+Retrieve All Products
+
+This query selects all records from the Products table to display product information, including category and supplier details.
+
+SELECT * FROM Products;
+```
