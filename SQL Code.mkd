@@ -1,0 +1,113 @@
+create table categories(
+category_id serial primary key,
+name varchar(100)
+)
+
+create table Products(
+product_id SERIAL Primary key,
+name Varchar(100),
+price DECIMAL(10,2),
+description varchar(255),
+tags Varchar(255),
+category_id INT,
+FOREIGN KEY (category_id) REFERENCES categories(category_id),
+supplier VARCHAR(100)
+)
+
+create table Customer(
+customer_id SERIAL Primary key,
+customer_name VARCHAR(100) NOT Null ,
+email VARCHAR(100) Not Null,
+phone_number VARCHAR(29),
+address VARCHAR(255),
+City VARCHAR(255)
+);
+
+Create Table Orders (
+order_id SERIAL Primary Key,
+customer_id INT,
+product_id INT,
+Total_quantity INT,
+Total_amount DECIMAL(10,2),
+order_rating DECIMAL(3,1),
+length DECIMAL(5,2),
+width DECIMAL(5,2),
+order_timestamp TIMESTAMP,
+delivery_timestamp TIMESTAMP,
+FOREIGN KEY (customer_id) REFERENCES Customer(category_id),
+FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+
+INSERT into Categories (name) Values ('Electronices'),('Clothing'),('Home and Kitchen')
+
+INSERT INTO Products (name, price, description, tags, category_id, Supplier) VALUES
+('Wireless Mouse', 25.99, 'A high-precision wireless mouse with ergonomic design.', 'electronics,accessories,wireless', 1, 'TechSuppliers Inc.'),
+('Bluetooth Headphones', 59.99, 'Noise-cancelling over-ear Bluetooth headphones.', 'electronics,audio,wireless', 1, 'SoundWave Ltd.'),
+('Stainless Steel Water Bottle', 19.99, 'Insulated water bottle keeps drinks cold or hot for hours.', 'kitchen,hydration,travel', 3, 'HomeEssentials Co.'),
+('Mens Casual Shirt', 29.99, 'Comfortable and stylish casual shirt for everyday wear.', 'clothing,men,fashion', 2, 'FashionHub LLC'),
+('LED Desk Lamp', 34.50, 'Adjustable LED desk lamp with multiple brightness settings.', 'home,lighting,office', 3, 'BrightLight Supplies'),
+('Smartphone Stand', 12.99, 'Adjustable smartphone stand compatible with all phone sizes.', 'electronics,accessories,phone', 1, 'GadgetWorld'),
+('Yoga Mat', 22.50, 'Non-slip yoga mat with comfortable cushioning.', 'fitness,wellness,exercise', 3, 'FitLife Products'),
+('Women Running Shoes', 75.00, 'Lightweight and breathable running shoes for women.', 'clothing,shoes,fitness', 2, 'ActiveGear Inc.'),
+('Portable Charger', 45.99, '10000mAh portable charger with fast charging capabilities.', 'electronics,accessories,portable', 1, 'PowerUp Solutions'),
+('Ceramic Coffee Mug', 15.99, 'Durable ceramic mug perfect for coffee and tea.', 'kitchen,drinkware,home', 3, 'KitchenBasics'),
+('Leather Wallet', 39.99, 'Premium leather wallet with multiple card slots.', 'accessories,leather,fashion', 2, 'StyleMasters'),
+('4K Monitor', 299.99, '27-inch 4K UHD monitor with vibrant colors and sharp details.', 'electronics,computers,display', 1, 'TechSuppliers Inc.'),
+('Electric Kettle', 29.95, 'Fast-boiling electric kettle with auto shut-off feature.', 'kitchen,appliances,home', 3, 'HomeEssentials Co.'),
+('Casual Sneakers', 55.00, 'Versatile sneakers suitable for various occasions.', 'clothing,shoes,casual', 2, 'FashionHub LLC'),
+('Gaming Keyboard', 89.99, 'Mechanical gaming keyboard with customizable RGB lighting.', 'electronics,computers,gaming', 1, 'GamerGear'),
+('Air Purifier', 129.99, 'HEPA air purifier removes 99.97% of airborne particles.', 'home,appliances,health', 3, 'CleanAir Tech'),
+('Summer Dress', 49.99, 'Lightweight summer dress with floral patterns.', 'clothing,women,fashion', 2, 'StyleMasters'),
+('Smartwatch', 199.99, 'Feature-rich smartwatch with fitness tracking and notifications.', 'electronics,wearables,fitness', 1, 'GadgetWorld'),
+('Blender', 59.99, 'High-speed blender perfect for smoothies and soups.', 'kitchen,appliances,cooking', 3, 'KitchenBasics'),
+('Hooded Sweatshirt', 35.00, 'Comfortable hooded sweatshirt available in multiple colors.', 'clothing,men,casual', 2, 'ActiveGear Inc.'),
+('Wireless Charger', 24.99, 'Fast wireless charger compatible with all Qi-enabled devices.', 'electronics,accessories,phone', 1, 'PowerUp Solutions');
+
+INSERT INTO Customer (customer_name, email, phone_number, address, city) VALUES
+('John Doe', 'john.doe@example.com', '1234567890', '123 Elm St', 'New York'),
+('Jane Smith', 'jane.smith@example.com', '2345678901', '456 Oak Ave', 'Los Angeles'),
+('Alice Johnson', 'alice.j@example.com', '3456789012', '789 Maple Dr', 'Chicago'),
+('Bob Brown', 'bob.brown@example.com', '4567890123', '101 Pine Ln', 'Houston'),
+('Charlie Davis', 'charlie.d@example.com', '5678901234', '202 Birch Rd', 'Phoenix'),
+('Diane Miller', 'diane.miller@example.com', '6789012345', '303 Cedar St', 'Philadelphia'),
+('Eve Wilson', 'eve.w@example.com', '7890123456', '404 Walnut Ave', 'San Antonio'),
+('Frank White', 'frank.white@example.com', '8901234567', '505 Aspen Ct', 'San Diego'),
+('Grace Lee', 'grace.lee@example.com', '9012345678', '606 Willow Blvd', 'Dallas'),
+('Harry Clark', 'harry.clark@example.com', '1230987654', '707 Oak Dr', 'San Jose'),
+('Ivy King', 'ivy.king@example.com', '2341098765', '808 Maple Ave', 'Austin'),
+('Jack Walker', 'jack.walker@example.com', '3452109876', '909 Pine Rd', 'Jacksonville'),
+('Karen Green', 'karen.g@example.com', '4563210987', '101 Cedar Blvd', 'Fort Worth'),
+('Leo Adams', 'leo.adams@example.com', '5674321098', '202 Birch Ln', 'Columbus'),
+('Mona Scott', 'mona.s@example.com', '6785432109', '303 Walnut Ct', 'Charlotte'),
+('Nick Young', 'nick.y@example.com', '7896543210', '404 Aspen Dr', 'San Francisco'),
+('Olivia Hill', 'olivia.h@example.com', '8907654321', '505 Willow St', 'Indianapolis'),
+('Paul Baker', 'paul.baker@example.com', '9018765432', '606 Elm Rd', 'Seattle'),
+('Quincy Carter', 'quincy.c@example.com', '0129876543', '707 Maple Ln', 'Denver'),
+('Rita Gonzalez', 'rita.g@example.com', '1230987456', '808 Oak Blvd', 'Washington');
+
+INSERT INTO Orders (customer_id, product_id, Total_quantity, Total_amount, order_rating, length, width, delivery_timestamp) VALUES
+(1, 2, 3, 59.97, 4.5, 15.25, 10.50, '2024-11-20 15:30:00'),
+(2, 5, 2, 39.98, 4.0, 12.00, 8.50, '2024-11-21 10:00:00'),
+(3, 3, 1, 49.99, 4.8, 14.75, 11.00, '2024-11-22 12:00:00'),
+(4, 7, 4, 99.96, 4.2, 16.25, 9.50, '2024-11-23 09:45:00'),
+(5, 9, 1, 11.99, 4.3, 8.00, 6.75, '2024-11-24 17:20:00'),
+(6, 2, 2, 29.98, 4.6, 13.00, 7.25, '2024-11-25 08:30:00'),
+(7, 6, 3, 89.97, 4.7, 15.00, 9.00, '2024-11-26 11:15:00'),
+(8, 4, 2, 25.98, 4.1, 11.50, 7.80, '2024-11-27 14:50:00'),
+(9, 8, 5, 119.95, 4.9, 17.00, 12.00, '2024-11-28 16:30:00'),
+(10, 10, 1, 18.99, 4.4, 10.25, 8.25, '2024-11-29 13:15:00'),
+(11, 12, 3, 59.97, 4.0, 12.75, 9.75, '2024-11-30 10:00:00'),
+(12, 11, 4, 119.96, 4.3, 14.50, 10.00, '2024-12-01 17:45:00'),
+(13, 1, 1, 19.99, 4.5, 9.50, 7.00, '2024-12-02 09:00:00'),
+(14, 3, 2, 99.98, 4.6, 16.00, 12.25, '2024-12-03 11:40:00'),
+(15, 5, 5, 149.95, 4.2, 18.25, 13.50, '2024-12-04 14:00:00'),
+(16, 14, 3, 89.97, 4.7, 15.75, 10.75, '2024-12-05 12:30:00'),
+(17, 6, 2, 49.98, 4.4, 12.25, 8.50, '2024-12-06 08:45:00'),
+(18, 13, 1, 99.99, 4.8, 14.00, 11.50, '2024-12-07 15:20:00'),
+(19, 8, 4, 59.96, 4.1, 11.00, 9.00, '2024-12-08 10:30:00'),
+(20, 7, 2, 29.98, 4.3, 13.50, 10.25, '2024-12-09 16:00:00');
+
+select _ from categories
+select _ from Orders
+select _ from Customer
+select _ from Products
